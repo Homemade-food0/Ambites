@@ -204,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function(){
   const swipeTarget = modal.querySelector('.lightbox-content');
   swipeTarget.addEventListener('touchstart', function(e){
     touchStartX = e.changedTouches[0].screenX;
-    e.preventDefault();
   }, { passive: false });
 
   swipeTarget.addEventListener('touchmove', function(e){
@@ -218,7 +217,6 @@ document.addEventListener('DOMContentLoaded', function(){
     } else if(touchStartX - touchEndX > swipeThreshold) {
       show(idx+1);
     }
-    e.preventDefault();
   }, { passive: false });
 
   // close when clicking outside content

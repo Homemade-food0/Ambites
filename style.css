@@ -426,6 +426,23 @@ footer h2 {
   opacity: 1;
   visibility: visible;
 }
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.85);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 2000;
+  touch-action: none;
+}
+.lightbox-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
 .lightbox-content {
   max-width: 90%;
   max-height: 80vh;
@@ -440,6 +457,7 @@ footer h2 {
   border-radius: 8px;
   box-shadow: 0 12px 40px rgba(0,0,0,0.6);
   cursor: grab;
+  touch-action: none;
 }
 .lightbox-caption {
   color: var(--white);
@@ -458,6 +476,7 @@ footer h2 {
 
 body.lightbox-open {
   overflow: hidden;
+  height: 100%;
   touch-action: none;
 }
 
