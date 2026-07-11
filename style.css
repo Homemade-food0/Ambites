@@ -64,7 +64,7 @@ section {
   background: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)),
     url("images/ambites-hero.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
   background-attachment: scroll;
   filter: brightness(1.08) saturate(1.03);
