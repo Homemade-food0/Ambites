@@ -87,6 +87,12 @@
       <p>Aseer Abood</p>
     </div>
   </div>
+  <div class="order-actions">
+    <p id="orderNote" class="order-note">Tap any menu item to add it to your order.</p>
+    <div id="orderSummary" class="order-summary"></div>
+    <button id="checkoutBtn" class="btn">Checkout</button>
+    <div id="orderMessage" class="order-message" aria-live="polite"></div>
+  </div>
 </section>
 
 <section id="gallery" class="gallery">
@@ -198,6 +204,67 @@ document.addEventListener('DOMContentLoaded', function(){
       openLightbox(allGallerySrcs, index);
     });
   });
+
+  const menuItems = Array.from(document.querySelectorAll('#menu .card p'));
+  const selectedOrder = new Set();
+  const orderNote = document.getElementById('orderNote');
+  const orderSummary = document.getElementById('orderSummary');
+  const orderMessage = document.getElementById('orderMessage');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  const whatsAppNumber = '971504048701';
+
+  function updateOrderDisplay() {
+    if (selectedOrder.size === 0) {
+      orderNote.textContent = 'Tap any menu item to add it to your order.';
+      orderSummary.textContent = '';
+      orderMessage.textContent = '';
+      checkoutBtn.textContent = 'Checkout';
+      checkoutBtn.classList.remove('btn-secondary');
+      return;
+    }
+
+    orderNote.textContent = `${selectedOrder.size} item(s) selected. Ready to checkout.`;
+    orderSummary.textContent = `Selected: ${Array.from(selectedOrder).join(', ')}`;
+    orderMessage.textContent = '';
+  }
+
+  menuItems.forEach(item => {
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', function() {
+      const name = item.textContent.trim();
+      if (selectedOrder.has(name)) {
+        selectedOrder.delete(name);
+        item.classList.remove('selected');
+      } else {
+        selectedOrder.add(name);
+        item.classList.add('selected');
+      }
+      updateOrderDisplay();
+    });
+  });
+
+  checkoutBtn.addEventListener('click', function() {
+    if (selectedOrder.size === 0) {
+      orderMessage.textContent = 'Please select at least one item before checkout.';
+      orderMessage.style.color = '#b10d00';
+      orderSummary.textContent = '';
+      return;
+    }
+
+    const items = Array.from(selectedOrder).join(', ');
+    const text = `Hello AmBites, I would like to order: ${items}. Please confirm my order.`;
+    const waLink = `https://wa.me/${whatsAppNumber}?text=${encodeURIComponent(text)}`;
+
+    window.open(waLink, '_blank');
+    orderMessage.style.color = '#1a7a07';
+    orderMessage.innerHTML = `Order ready! A WhatsApp message has been prepared for AmBites: <strong>${items}</strong>.`;
+    orderNote.textContent = 'Thank you! Your order has been sent via WhatsApp for confirmation.';
+    orderSummary.textContent = `Order summary: ${items}`;
+    checkoutBtn.textContent = 'Send Order Again';
+    checkoutBtn.classList.add('btn-secondary');
+  });
+
+  updateOrderDisplay();
 
   closeBtn.addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
 

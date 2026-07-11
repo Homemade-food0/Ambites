@@ -133,6 +133,44 @@ section {
   margin-bottom: 20px;
 }
 
+.menu .card p,
+.menu .card img {
+  cursor: pointer;
+}
+
+.menu .card p.selected,
+.menu .card img.selected {
+  background: rgba(255, 152, 0, 0.2);
+  border-radius: 8px;
+}
+
+.order-actions {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.order-actions .btn {
+  min-width: 180px;
+}
+
+.order-note {
+  margin-bottom: 16px;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.order-summary {
+  color: #4a4a4a;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.order-message {
+  margin-top: 16px;
+  color: #1a7a07;
+  font-weight: 700;
+}
+
 .about p,
 .gallery p,
 .contact p {
@@ -478,6 +516,7 @@ body.lightbox-open {
   overflow: hidden;
   height: 100%;
   touch-action: none;
+  overscroll-behavior: none;
 }
 
 @media (max-width: 600px) {
