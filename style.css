@@ -277,6 +277,10 @@ footer h2 {
     gap: 10px;
   }
 
+  header h1 {
+    font-size: 1.4rem;
+  }
+
   nav a {
     margin: 0 8px;
   }
@@ -286,15 +290,61 @@ footer h2 {
   }
 
   .hero {
-    min-height: 60vh;
+    min-height: 55vh;
   }
 
   .hero > * {
-    padding: 50px 6%;
+    padding: 40px 6%;
+  }
+
+  .hero h2 {
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+  }
+
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+
+  .hero-actions {
+    gap: 10px;
   }
 
   .hero-text {
-    margin: -80px auto 30px;
+    margin: -70px auto 26px;
+    padding: 40px 6%;
+  }
+}
+
+@media (max-width: 500px) {
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  .hero {
+    min-height: 48vh;
+  }
+
+  .hero > * {
+    padding: 30px 5%;
+  }
+
+  .hero h2 {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .hero-text {
+    margin: -60px auto 24px;
+    padding: 30px 5%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
   }
 }
 
