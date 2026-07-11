@@ -284,6 +284,18 @@ footer h2 {
   section {
     padding: 56px 6%;
   }
+
+  .hero {
+    min-height: 60vh;
+  }
+
+  .hero > * {
+    padding: 50px 6%;
+  }
+
+  .hero-text {
+    margin: -80px auto 30px;
+  }
 }
 
 /* Lightbox modal */
