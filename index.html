@@ -186,12 +186,14 @@ document.addEventListener('DOMContentLoaded', function(){
     caption.textContent = (idx+1) + ' / ' + images.length;
   }
 
+  const allGalleryImgs = Array.from(document.querySelectorAll('#gallery .thumbs img'));
+  const allGallerySrcs = allGalleryImgs.map(img => img.src);
+
   // Card click: open lightbox for that card's thumbs
   document.querySelectorAll('.card').forEach(card => {
     const thumbs = Array.from(card.querySelectorAll('.thumbs img')).map(i => i.src);
     if(thumbs.length === 0) return;
 
-    // clicking a specific thumb should open at that index
     card.addEventListener('click', function(e){
       const target = e.target;
       if(target.tagName.toLowerCase() === 'img' && target.closest('.thumbs')){
@@ -201,6 +203,15 @@ document.addEventListener('DOMContentLoaded', function(){
       } else {
         openLightbox(thumbs, 0);
       }
+    });
+  });
+
+  // Gallery-wide click: open lightbox for all gallery images in order
+  allGalleryImgs.forEach((img, index) => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', function(e){
+      e.stopPropagation();
+      openLightbox(allGallerySrcs, index);
     });
   });
 
