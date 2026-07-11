@@ -168,11 +168,13 @@ document.addEventListener('DOMContentLoaded', function(){
     idx = start || 0;
     show(idx);
     modal.classList.add('open');
+    document.body.classList.add('lightbox-open');
     modal.setAttribute('aria-hidden','false');
   }
 
   function closeLightbox(){
     modal.classList.remove('open');
+    document.body.classList.remove('lightbox-open');
     modal.setAttribute('aria-hidden','true');
     imgEl.src = '';
     caption.textContent = '';
@@ -202,7 +204,12 @@ document.addEventListener('DOMContentLoaded', function(){
   const swipeTarget = modal.querySelector('.lightbox-content');
   swipeTarget.addEventListener('touchstart', function(e){
     touchStartX = e.changedTouches[0].screenX;
-  });
+    e.preventDefault();
+  }, { passive: false });
+
+  swipeTarget.addEventListener('touchmove', function(e){
+    e.preventDefault();
+  }, { passive: false });
 
   swipeTarget.addEventListener('touchend', function(e){
     touchEndX = e.changedTouches[0].screenX;
@@ -211,7 +218,8 @@ document.addEventListener('DOMContentLoaded', function(){
     } else if(touchStartX - touchEndX > swipeThreshold) {
       show(idx+1);
     }
-  });
+    e.preventDefault();
+  }, { passive: false });
 
   // close when clicking outside content
   modal.addEventListener('click', function(e){ if(e.target === modal) closeLightbox(); });
