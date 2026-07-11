@@ -318,38 +318,38 @@ footer h2 {
 
 @media (max-width: 500px) {
   header {
-    padding: 14px 5%;
+    padding: 12px 4%;
   }
 
   header h1 {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   nav a {
-    font-size: 0.85rem;
-    margin: 0 6px;
+    font-size: 0.82rem;
+    margin: 0 5px;
   }
 
   .hero {
-    min-height: 38vh;
+    min-height: 34vh;
     background-position: center top;
   }
 
   .hero > * {
-    padding: 22px 4%;
+    padding: 18px 4%;
   }
 
   .hero h2 {
-    font-size: clamp(1.3rem, 8vw, 1.8rem);
+    font-size: clamp(1.2rem, 8vw, 1.7rem);
   }
 
   .hero p {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
   }
 
   .hero-text {
-    margin: -48px auto 18px;
-    padding: 22px 4%;
+    margin: -44px auto 16px;
+    padding: 18px 4%;
   }
 
   .hero-actions {
@@ -360,37 +360,51 @@ footer h2 {
 
 @media (max-width: 400px) {
   header {
-    padding: 12px 4%;
+    padding: 10px 3.5%;
   }
 
   header h1 {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   nav a {
-    font-size: 0.8rem;
-    margin: 0 5px;
+    font-size: 0.78rem;
+    margin: 0 4px;
   }
 
   .hero {
-    min-height: 34vh;
+    min-height: 30vh;
   }
 
   .hero > * {
-    padding: 20px 4%;
+    padding: 16px 3.5%;
   }
 
   .hero h2 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   .hero p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .hero-text {
-    margin: -45px auto 18px;
-    padding: 20px 4%;
+    margin: -38px auto 14px;
+    padding: 16px 3.5%;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero {
+    min-height: 28vh;
+  }
+
+  .hero h2 {
+    font-size: 1.1rem;
+  }
+
+  .hero-text {
+    margin: -34px auto 12px;
   }
 }
 
