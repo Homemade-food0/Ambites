@@ -432,20 +432,20 @@ footer h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  touch-action: pan-y;
 }
 .lightbox-image {
   max-width: 100%;
   max-height: 80vh;
   border-radius: 8px;
   box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  cursor: grab;
 }
 .lightbox-caption {
   color: var(--white);
   margin-top: 10px;
 }
-.lightbox-close,
-.lightbox-prev,
-.lightbox-next {
+.lightbox-close {
   position: absolute;
   background: transparent;
   color: var(--white);
@@ -454,14 +454,11 @@ footer h2 {
   cursor: pointer;
   padding: 8px 12px;
 }
-.lightbox-close { top: 20px; right: 28px; }
-.lightbox-prev { left: 18px; top: 50%; transform: translateY(-50%); }
-.lightbox-next { right: 18px; top: 50%; transform: translateY(-50%); }
-.lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { opacity: 0.9; }
+.lightbox-close:hover { opacity: 0.9; }
 
 @media (max-width: 600px) {
   .card .thumbs img { width: 70px; height: 52px; }
-  .lightbox-close, .lightbox-prev, .lightbox-next { font-size: 24px; }
+  .lightbox-close { font-size: 24px; }
 }
 
 /* Disable fixed background on small screens for better performance */

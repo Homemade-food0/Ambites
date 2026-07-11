@@ -145,12 +145,10 @@
 <!-- Lightbox modal -->
 <div id="lightboxModal" class="lightbox-modal" aria-hidden="true">
   <button class="lightbox-close" aria-label="Close">×</button>
-  <button class="lightbox-prev" aria-label="Previous">❮</button>
   <div class="lightbox-content">
     <img class="lightbox-image" src="" alt="">
     <div class="lightbox-caption"></div>
   </div>
-  <button class="lightbox-next" aria-label="Next">❯</button>
 </div>
 
 <script>
@@ -158,11 +156,12 @@ document.addEventListener('DOMContentLoaded', function(){
   const modal = document.getElementById('lightboxModal');
   const imgEl = modal.querySelector('.lightbox-image');
   const caption = modal.querySelector('.lightbox-caption');
-  const prevBtn = modal.querySelector('.lightbox-prev');
-  const nextBtn = modal.querySelector('.lightbox-next');
   const closeBtn = modal.querySelector('.lightbox-close');
   let images = [];
   let idx = 0;
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const swipeThreshold = 40;
 
   function openLightbox(list, start=0){
     images = list.slice();
@@ -189,24 +188,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const allGalleryImgs = Array.from(document.querySelectorAll('#gallery .thumbs img'));
   const allGallerySrcs = allGalleryImgs.map(img => img.src);
 
-  // Card click: open lightbox for that card's thumbs
-  document.querySelectorAll('.card').forEach(card => {
-    const thumbs = Array.from(card.querySelectorAll('.thumbs img')).map(i => i.src);
-    if(thumbs.length === 0) return;
-
-    card.addEventListener('click', function(e){
-      const target = e.target;
-      if(target.tagName.toLowerCase() === 'img' && target.closest('.thumbs')){
-        const imgs = Array.from(target.closest('.thumbs').querySelectorAll('img'));
-        const start = imgs.indexOf(target);
-        openLightbox(thumbs, start);
-      } else {
-        openLightbox(thumbs, 0);
-      }
-    });
-  });
-
-  // Gallery-wide click: open lightbox for all gallery images in order
+  // Click each gallery image to open the lightbox and start at that image
   allGalleryImgs.forEach((img, index) => {
     img.style.cursor = 'pointer';
     img.addEventListener('click', function(e){
@@ -215,9 +197,21 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
-  prevBtn.addEventListener('click', function(e){ e.stopPropagation(); show(idx-1); });
-  nextBtn.addEventListener('click', function(e){ e.stopPropagation(); show(idx+1); });
   closeBtn.addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+
+  const swipeTarget = modal.querySelector('.lightbox-content');
+  swipeTarget.addEventListener('touchstart', function(e){
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  swipeTarget.addEventListener('touchend', function(e){
+    touchEndX = e.changedTouches[0].screenX;
+    if(touchEndX - touchStartX > swipeThreshold) {
+      show(idx-1);
+    } else if(touchStartX - touchEndX > swipeThreshold) {
+      show(idx+1);
+    }
+  });
 
   // close when clicking outside content
   modal.addEventListener('click', function(e){ if(e.target === modal) closeLightbox(); });
