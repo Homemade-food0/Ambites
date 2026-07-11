@@ -318,33 +318,61 @@ footer h2 {
 
 @media (max-width: 500px) {
   header h1 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
   }
 
   .hero {
-    min-height: 48vh;
+    min-height: 40vh;
+    background-position: center top;
   }
 
   .hero > * {
-    padding: 30px 5%;
+    padding: 24px 4%;
   }
 
   .hero h2 {
-    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    font-size: clamp(1.4rem, 8vw, 2rem);
   }
 
   .hero p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .hero-text {
-    margin: -60px auto 24px;
-    padding: 30px 5%;
+    margin: -50px auto 20px;
+    padding: 24px 4%;
   }
 
   .hero-actions {
     flex-direction: column;
     gap: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero {
+    min-height: 36vh;
+  }
+
+  .hero > * {
+    padding: 20px 4%;
+  }
+
+  .hero h2 {
+    font-size: 1.4rem;
+  }
+
+  .hero p {
+    font-size: 0.85rem;
+  }
+
+  .hero-text {
+    margin: -45px auto 18px;
+    padding: 20px 4%;
   }
 }
 
